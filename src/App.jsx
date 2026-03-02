@@ -30,10 +30,8 @@ function App() {
   }, [titleFilter])
 
   const handleSubmit = (e) => {
-
     setNewFilm({
-      ...newFilm,
-      [e.target.name]: e.target.value,
+      ...newFilm, [e.target.name]: e.target.value,
     });
   }
 
@@ -49,7 +47,6 @@ function App() {
 
   return (
     <>
-
       <section>
         <p>Filtra per titolo</p>
         <input type="text" onChange={(e) => setTitleFilter(e.target.value)} />
@@ -77,21 +74,21 @@ function App() {
       </section>
 
       <section>
-
         <form onSubmit={addFilm}>
           <label htmlFor="title"> Titolo </label>
           <input
             name='title'
             type='text'
             value={newFilm.title}
-            onChange={handleSubmit} />
+            onChange={handleSubmit}
+          />
           <label htmlFor='genere'> Genere </label>
           <input
             name='genre'
             type='text'
             value={newFilm.genre}
-            onChange={handleSubmit} />
-
+            onChange={handleSubmit}
+          />
           <button type='submit'>
             Invia
           </button>
