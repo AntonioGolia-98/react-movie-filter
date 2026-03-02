@@ -13,9 +13,25 @@ const arrayFilm = [
 function App() {
   const [film, setFilm] = useState(arrayFilm);
   const [newFilm, setNewFilm] = useState({
-    title: "",
-    genre: ""
+    title: '',
+    genre: ''
   });
+
+  const handleSubmit = (event) => {
+    setNewFilm({
+      ...newFilm, [event.target.name]: event.target.value
+    })
+  }
+
+  const addFilm = (event) => {
+    event.preventdefault();
+    setFilm([...film, newFilm])
+    setNewFilm({
+      title: '',
+      genre: ''
+    });
+  }
+
 
   return (
     <>
@@ -27,12 +43,30 @@ function App() {
           {arrayFilm.map((singleFilm, index) =>
             <li key={index}>
               {singleFilm.title} {singleFilm.genre}
-
             </li>
           )}
         </ul>
-      </section>
+        <section>
+          <form onSubmit={addFilm}>
+            <label htmlFor="title"> Titolo </label>
+            <input
+              name='title'
+              type='text'
+              value={newFilm.title}
+              onChange={handleSubmit} />
+            <label htmlFor='genere'> Genere </label>
+            <input
+              name='genre'
+              type='text'
+              value={newFilm.genre}
+              onChange={handleSubmit} />
 
+            <button type='submit'>
+              Invia
+            </button>
+          </form>
+        </section>
+      </section>
     </>
   )
 }
